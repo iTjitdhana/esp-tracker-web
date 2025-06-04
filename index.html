@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>ESP-Tracker Web Simulator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .number-display {
+      font-size: 48px;
+      margin: 20px;
+    }
+    .btn {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+    .btn-green { background-color: #2ecc71; }
+    .btn-red { background-color: #e74c3c; }
+    .btn-gray { background-color: gray; }
+
+    select {
+      font-size: 18px;
+      padding: 5px;
+      margin-top: 10px;
+    }
+
+    #status-log {
+      margin-top: 20px;
+      font-size: 16px;
+      color: darkblue;
+    }
+  </style>
+</head>
+<body>
+  <h2>ESP Tracker Web Simulator</h2>
+
+  <label for="device-select">เลือกอุปกรณ์:</label>
+  <select id="device-select">
+    <option value="ESP-01">ESP-01</option>
+    <option value="ESP-02">ESP-02</option>
+    <option value="ESP-03">ESP-03</option>
+    <option value="ESP-04">ESP-04</option>
+    <option value="ESP-05">ESP-05</option>
+    <option value="ESP-06">ESP-06</option>
+    <option value="ESP-07">ESP-07</option>
+    <option value="ESP-08">ESP-08</option>
+    <option value="ESP-09">ESP-09</option>
+    <option value="ESP-10">ESP-10</option>
+    <option value="ESP-11">ESP-11</option>
+    <option value="ESP-12">ESP-12</option>
+    <option value="ESP-13">ESP-13</option>
+    <option value="ESP-14">ESP-14</option>
+    <option value="ESP-01" selected>ESP-01</option>
+  </select>
+
+  <div class="number-display" id="num-display">01</div>
+
+  <div>
+    <button class="btn btn-gray" onclick="changeNumber(1)">▲</button>
+    <button class="btn btn-gray" onclick="changeNumber(-1)">▼</button>
+  </div>
+
+  <div>
+    <button class="btn btn-green" onclick="sendToSheet(true)">เริ่มงาน</button>
+    <button class="btn btn-red" onclick="sendToSheet(false)">หยุดงาน</button>
+  </div>
+
+  <div id="status-log">ยังไม่ส่งข้อมูล</div>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbz_Vn_RziszH9dGYyqhi9mfBVdPnKXFTU_MK8TyEaTuG-o4i-m064CnKiNC6VPv8lDs/exec";
+    const sheetName = "Data";
+    let number = 1;
+
+    function changeNumber(step) {
+      number += step;
+      if (number > 10) number = 1;
+      if (number < 1) number = 10;
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      document.getElementById("num-display").textContent = number.toString().padStart(2, '0');
+    }
+
+    function getCurrentTime() {
+      const now = new Date();
+      return now.toLocaleTimeString('th-TH', { hour12: false });
+    }
+
+    function sendToSheet(isStart) {
+      const deviceId = document.getElementById('device-select').value;
+      const timestamp = getCurrentTime();
+      const url = `${scriptURL}?number=${number}&timestamp=${timestamp}&sheetName=${sheetName}&deviceId=${deviceId}`;
+
+      document.getElementById("status-log").textContent = `กำลังส่ง (${isStart ? "เริ่มงาน" : "หยุดงาน"})...`;
+
+      fetch(url)
+        .then(res => res.text())
+        .then(text => {
+          document.getElementById("status-log").textContent =
+            `${deviceId}: ส่งข้อมูลสำเร็จ (${number}) เวลา ${timestamp}`;
+        })
+        .catch(err => {
+          document.getElementById("status-log").textContent = "❌ เกิดข้อผิดพลาดในการส่งข้อมูล";
+          console.error(err);
+        });
+    }
+
+    updateDisplay();
+  </script>
+</body>
+</html>
