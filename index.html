@@ -24,8 +24,9 @@
 
   <div class="container">
     <div class="display-section">
+      <div class="job-title hidden" id="job-title">ซี่โครงตุ๋น 170 กรัม (1แพ็ค /1จาน )</div>
       <div class="number-display" id="num-display">01</div>
-      <div class="process-name" id="process-name">1 | เตรียมอุปกรณ์</div>
+      <div class="process-name hidden" id="process-name">1 | เตรียมอุปกรณ์</div>
       <div class="status-log" id="status-log">ยังไม่ส่งข้อมูล</div>
     </div>
 
@@ -54,15 +55,15 @@
       7: "ตุ๋น 30 นาที, ล้างหม้อ, แพ็ค รอบที่ 3",
       8: "ชั่งน้ำ ใส่เครื่องปรุง ใส่ซี่โครง รอบที่ 4",
       9: "ตุ๋น 30 นาที, ล้างหม้อ, แพ็ค รอบที่ 4",
-      10:"ชั่งน้ำ ใส่เครื่องปรุง ใส่ซี่โครง รอบที่ 5",
-      11:"ตุ๋น 30 นาที, ล้างหม้อ, แพ็ค รอบที่ 5",
-      12:"ล้างอุปกรณ์"
+      10: "ชั่งน้ำ ใส่เครื่องปรุง ใส่ซี่โครง รอบที่ 5",
+      11: "ตุ๋น 30 นาที, ล้างหม้อ, แพ็ค รอบที่ 5",
+      12: "ล้างอุปกรณ์"
     };
 
     function changeNumber(step) {
       number += step;
-      if (number > 10) number = 1;
-      if (number < 1) number = 10;
+      if (number > 12) number = 1;
+      if (number < 1) number = 12;
       updateDisplay();
     }
 
@@ -70,12 +71,16 @@
       document.getElementById("num-display").textContent = number.toString().padStart(2, '0');
       const selectedDevice = document.getElementById("device-select").value;
       const processName = document.getElementById("process-name");
+      const jobTitle = document.getElementById("job-title");
 
       if (selectedDevice === "10") {
-        processName.style.display = "block";
-        processName.textContent = `${number} | ${processMap[number] || ""}`;
+        processName.classList.remove("hidden");
+        jobTitle.classList.remove("hidden");
+        processName.textContent = number + " | " + (processMap[number] || "");
+        jobTitle.textContent = "ซี่โครงตุ๋น 170 กรัม (1แพ็ค /1จาน )";
       } else {
-        processName.style.display = "none";
+        processName.classList.add("hidden");
+        jobTitle.classList.add("hidden");
       }
     }
 
