@@ -1,0 +1,149 @@
+/* style.css */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  gap: 40px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.dropdown-wrapper {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+#device-select {
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+}
+
+.display-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.number-display,
+.status-log,
+.process-name {
+  align-self: center;
+}
+
+.number-display {
+  font-size: 120px;
+  background-color: black;
+  color: white;
+  padding: 20px 40px;
+  border-radius: 12px;
+}
+
+.process-name {
+  font-size: 28px;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.status-log {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-top: 12px;
+  min-width: 200px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid transparent;
+}
+
+.status-success {
+  background-color: #d4f5dc;
+  color: #0b3d1c;
+  border-color: #a0e2b3;
+}
+
+.status-fail {
+  background-color: #e74c3c;
+  color: white;
+  border-color: #c0392b;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  flex-shrink: 0;
+}
+
+.btn {
+  font-size: 32px;
+  padding: 18px 24px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  min-width: 180px;
+  width: 100%;
+}
+
+.btn-red {
+  background-color: #e74c3c;
+}
+
+.btn-green {
+  background-color: #2ecc71;
+}
+
+.btn-yellow {
+  background-color: #f1c40f;
+  color: black;
+}
+
+.btn-select-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .btn {
+    font-size: 20px;
+    padding: 12px;
+  }
+
+  .number-display {
+    font-size: 72px;
+  }
+
+  .process-name {
+    font-size: 22px;
+  }
+}
