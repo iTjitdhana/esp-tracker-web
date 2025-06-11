@@ -55,20 +55,20 @@
     const sheetName = "Data";
     let number = 1;
 
-    const processMap = {
-      1: "เตรียมอุปกรณ์",
-      2: "ชั่งน้ำ ใส่เครื่องปรุง ใส่ซี่โครง รอบที่ 1",
-      3: "ตุ๋น 30 นาที, ล้างหม้อ, แพ็ค รอบที่ 1",
-      4: "ชั่งน้ำ ใส่เครื่องปรุง ใส่ซี่โครง รอบที่ 2",
-      5: "ตุ๋น 30 นาที, ล้างหม้อ, แพ็ค รอบที่ 2",
-      6: "ชั่งน้ำ ใส่เครื่องปรุง ใส่ซี่โครง รอบที่ 3",
-      7: "ตุ๋น 30 นาที, ล้างหม้อ, แพ็ค รอบที่ 3",
-      8: "ชั่งน้ำ ใส่เครื่องปรุง ใส่ซี่โครง รอบที่ 4",
-      9: "ตุ๋น 30 นาที, ล้างหม้อ, แพ็ค รอบที่ 4",
-      10: "ชั่งน้ำ ใส่เครื่องปรุง ใส่ซี่โครง รอบที่ 5",
-      11: "ตุ๋น 30 นาที, ล้างหม้อ, แพ็ค รอบที่ 5",
-      12: "ล้างอุปกรณ์"
-    };
+    // const processMap = {
+    //   1: "เตรียมอุปกรณ์",
+    //   2: "ชั่งน้ำ ใส่เครื่องปรุง ใส่ซี่โครง รอบที่ 1",
+    //   3: "ตุ๋น 30 นาที, ล้างหม้อ, แพ็ค รอบที่ 1",
+    //   4: "ชั่งน้ำ ใส่เครื่องปรุง ใส่ซี่โครง รอบที่ 2",
+    //   5: "ตุ๋น 30 นาที, ล้างหม้อ, แพ็ค รอบที่ 2",
+    //   6: "ชั่งน้ำ ใส่เครื่องปรุง ใส่ซี่โครง รอบที่ 3",
+    //   7: "ตุ๋น 30 นาที, ล้างหม้อ, แพ็ค รอบที่ 3",
+    //   8: "ชั่งน้ำ ใส่เครื่องปรุง ใส่ซี่โครง รอบที่ 4",
+    //   9: "ตุ๋น 30 นาที, ล้างหม้อ, แพ็ค รอบที่ 4",
+    //   10: "ชั่งน้ำ ใส่เครื่องปรุง ใส่ซี่โครง รอบที่ 5",
+    //   11: "ตุ๋น 30 นาที, ล้างหม้อ, แพ็ค รอบที่ 5",
+    //   12: "ล้างอุปกรณ์"
+    // };
 
     function changeNumber(step) {
       number += step;
@@ -83,15 +83,15 @@
       const processName = document.getElementById("process-name");
       const jobTitle = document.getElementById("job-title");
 
-      if (selectedDevice === "10") {
-        processName.classList.remove("hidden");
-        jobTitle.classList.remove("hidden");
-        processName.textContent = number + " | " + (processMap[number] || "");
-        jobTitle.textContent = "ซี่โครงตุ๋น 170 กรัม (1แพ็ค /1จาน )";
-      } else {
-        processName.classList.add("hidden");
-        jobTitle.classList.add("hidden");
-      }
+      // if (selectedDevice === "10") {
+      //   processName.classList.remove("hidden");
+      //   jobTitle.classList.remove("hidden");
+      //   processName.textContent = number + " | " + (processMap[number] || "");
+      //   jobTitle.textContent = "ซี่โครงตุ๋น 170 กรัม (1แพ็ค /1จาน )";
+      // } else {
+      //   processName.classList.add("hidden");
+      //   jobTitle.classList.add("hidden");
+      // }
     }
 
     function updateFromDropdown() {
